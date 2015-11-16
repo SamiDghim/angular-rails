@@ -1,0 +1,57 @@
+<div class="page-header">
+    <h1>Flapper News</h1>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">Posts : </div>
+    <div class="panel-body">
+        <!-- -->
+  <ul class="list-group" ng-repeat="post in posts | orderBy:'-upvotes'">
+      <li class="list-group-item">
+          <div class="panel-default" >
+          <div class="panel-title">{{post.title}}</div>
+          <div class="panel-body">  {{post.bodypost}}</div>
+<div class="panel-footer">
+    <span class="glyphicon glyphicon-thumbs-up" ng-click="incrementUpvotes(post)"></span>{{post.upvotes}}
+
+    <span><a ng-show="post.link" href="{{post.link}}">{{post.title}}</a><span ng-hide="post.link">{{post.title}}</span></span>
+
+    <span class="glyphicon glyphicon-comment"></span><a href="#/posts/{{$index}}">{{post.comments.length}} Comments </a>
+
+</div>
+    </div>
+      </li>
+        </ul> <!--  end ng-repeat-->
+
+    </div>
+</div>
+
+
+
+
+
+
+<form ng-submit="addPost()"
+      style="margin-top:30px;">
+    <h3>Add a new post</h3>
+    <div class="form-group">
+        <input type="text"
+               class="form-control"
+               placeholder="Title"
+               ng-model="title"/>
+    </div>
+    <div class="form-group">
+        <input type="text"
+               class="form-control"
+               placeholder="Link"
+               ng-model="link"/>
+    </div>
+
+    <div class="form-group">
+        <label for="post">Comment:</label>
+        <textarea class="form-control" placeholder="Text..." ng-model="bodypost" rows="5" id="post"></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Post</button>
+</form>
+
